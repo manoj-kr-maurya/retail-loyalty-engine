@@ -11,6 +11,7 @@
     "start:loyalty": "npm run start:dev --workspace=loyalty-service",
     "start:notification": "npm run start:dev --workspace=notification-service",
     "start:customer": "npm run start:dev --workspace=customer-service",
+    "start:reward": "npm run start:dev --workspace=reward-service",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio"
   },
