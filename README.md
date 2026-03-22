@@ -22,7 +22,30 @@ npm run start --workspace=loyalty-app
 
 The services use RxJS for reactive programming and are built with NestJS microservices.
 
-### Running microservices
+### Running with Docker
+
+Each app now has its own Dockerfile under `apps/<service>/Dockerfile`.
+
+Run per-service builds:
+
+```sh
+cd apps/auth-service && docker build -t auth-service .
+cd ../customer-service && docker build -t customer-service .
+cd ../reward-service && docker build -t reward-service .
+cd ../loyalty-service && docker build -t loyalty-service .
+cd ../notification-service && docker build -t notification-service .
+```
+
+Run via compose (single service image per app):
+
+```sh
+docker-compose up --build
+```
+
+> Root Dockerfile and monorepo `docker-compose.yml` have been removed; now each microservice is isolated in its own image.
+
+
+### Running microservices manually
 
 Each service can be started independently from the root:
 

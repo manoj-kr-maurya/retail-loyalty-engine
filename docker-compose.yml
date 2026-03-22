@@ -1,0 +1,44 @@
+version: '3.9'
+
+services:
+  auth-service:
+    build:
+      context: .
+      dockerfile: ./apps/auth-service/Dockerfile
+    image: reward-engine-auth-service
+    ports:
+      - "3000:3000"
+
+  loyalty-service:
+    build:
+      context: .
+      dockerfile: ./apps/loyalty-service/Dockerfile
+    image: reward-engine-loyalty-service
+    ports:
+      - "4001:4001"
+
+  notification-service:
+    build:
+      context: .
+      dockerfile: ./apps/notification-service/Dockerfile
+    image: reward-engine-notification-service
+    ports:
+      - "4002:4002"
+
+  customer-service:
+    build:
+      context: .
+      dockerfile: ./apps/customer-service/Dockerfile
+    image: reward-engine-customer-service
+    ports:
+      - "3001:3001"
+      - "4003:4003"
+
+  reward-service:
+    build:
+      context: .
+      dockerfile: ./apps/reward-service/Dockerfile
+    image: reward-engine-reward-service
+    ports:
+      - "3004:3004"
+      - "4004:4004"
