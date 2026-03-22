@@ -7,16 +7,19 @@
     "libs/*"
   ],
   "scripts": {
+    "build:all": "npm run build --workspaces",
     "start:auth": "npm run start:dev --workspace=auth-service",
     "start:loyalty": "npm run start:dev --workspace=loyalty-service",
     "start:notification": "npm run start:dev --workspace=notification-service",
     "start:customer": "npm run start:dev --workspace=customer-service",
     "start:reward": "npm run start:dev --workspace=reward-service",
+    "start:all": "concurrently \"npm run start:auth\" \"npm run start:loyalty\" \"npm run start:notification\" \"npm run start:customer\" \"npm run start:reward\"",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.16",
+    "concurrently": "^9.2.1",
     "prisma": "^5.12.0"
   },
   "dependencies": {

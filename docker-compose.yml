@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  reward-engine:
+    build: .
+    ports:
+      - "3000:3000"  # auth-service
+      - "3001:3001"  # customer-service HTTP
+      - "3004:3004"  # reward-service HTTP
+      - "4001:4001"  # loyalty-service TCP
+      - "4002:4002"  # notification-service TCP
+      - "4003:4003"  # customer-service TCP
+      - "4004:4004"  # reward-service TCP
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run start:all

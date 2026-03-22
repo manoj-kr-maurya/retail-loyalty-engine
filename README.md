@@ -22,7 +22,29 @@ npm run start --workspace=loyalty-app
 
 The services use RxJS for reactive programming and are built with NestJS microservices.
 
-### Running microservices
+### Running with Docker
+
+To run the entire reward engine using Docker:
+
+```sh
+docker-compose up --build
+```
+
+This will build the monorepo and start all services in a single container, exposing ports:
+- Auth Service: 3000
+- Customer Service: 3001 (HTTP), 4003 (TCP)
+- Reward Service: 3004 (HTTP), 4004 (TCP)
+- Loyalty Service: 4001 (TCP)
+- Notification Service: 4002 (TCP)
+
+For development, you can also build the Docker image manually:
+
+```sh
+docker build -t reward-engine .
+docker run -p 3000:3000 -p 3001:3001 -p 3004:3004 -p 4001:4001 -p 4002:4002 -p 4003:4003 -p 4004:4004 reward-engine
+```
+
+### Running microservices manually
 
 Each service can be started independently from the root:
 
