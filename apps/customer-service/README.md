@@ -44,6 +44,18 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Customer service APIs
+
+This service exposes a small customer management API (in-memory, demo only).
+
+- `POST /customers` - Register a customer with `phone`, `email`, and/or `name`
+- `GET /customers` - List all customers
+- `GET /customers/:id` - Get a single customer (includes a base64 "QR" payload)
+- `POST /customers/:id/purchases` - Add a purchase (body: `amount`, optional `description`)
+- `GET /customers/:id/purchases` - Get purchase history for a customer
+
+> Note: Data is stored in-memory and will reset when the service restarts.
+
 ## Run tests
 
 ```bash
