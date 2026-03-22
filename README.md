@@ -24,25 +24,26 @@ The services use RxJS for reactive programming and are built with NestJS microse
 
 ### Running with Docker
 
-To run the entire reward engine using Docker:
+Each app now has its own Dockerfile under `apps/<service>/Dockerfile`.
+
+Run per-service builds:
+
+```sh
+cd apps/auth-service && docker build -t auth-service .
+cd ../customer-service && docker build -t customer-service .
+cd ../reward-service && docker build -t reward-service .
+cd ../loyalty-service && docker build -t loyalty-service .
+cd ../notification-service && docker build -t notification-service .
+```
+
+Run via compose (single service image per app):
 
 ```sh
 docker-compose up --build
 ```
 
-This will build the monorepo and start all services in a single container, exposing ports:
-- Auth Service: 3000
-- Customer Service: 3001 (HTTP), 4003 (TCP)
-- Reward Service: 3004 (HTTP), 4004 (TCP)
-- Loyalty Service: 4001 (TCP)
-- Notification Service: 4002 (TCP)
+> Root Dockerfile and monorepo `docker-compose.yml` have been removed; now each microservice is isolated in its own image.
 
-For development, you can also build the Docker image manually:
-
-```sh
-docker build -t reward-engine .
-docker run -p 3000:3000 -p 3001:3001 -p 3004:3004 -p 4001:4001 -p 4002:4002 -p 4003:4003 -p 4004:4004 reward-engine
-```
 
 ### Running microservices manually
 
